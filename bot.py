@@ -34,6 +34,12 @@ async def on_connect(*args, **kwargs):
     print("Channels", list(client.get_all_channels()))
     print("Members", list(client.get_all_members()))
 
+@client.event
+async def echo(ctx, *, message=None):
+    Message = message or "Need Message"
+    await ctx.message.delete()
+    await ctx.send(message)
+
 
 @client.event
 async def on_message(message):

@@ -29,13 +29,14 @@ async def echo(ctx, *, message=None):
     await ctx.send(message)
 
 @bot.event
-async def on_ready(*args, **kwargs):
+async def on_ready():
+    print("We have logged in as {0.user}".format(bot)) 
     print("Channels", list(bot.get_all_channels()))
+"""
 
 @bot.event
-async def on_ready():
-    print("We have logged in as {0.user}".format(bot))
-"""
+async def on_ready(*args, **kwargs):
+    print("Channels", list(bot.get_all_channels()))
 
 @client.event
 async def on_connect(*args, **kwargs):

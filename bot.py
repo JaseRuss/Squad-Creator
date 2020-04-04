@@ -114,7 +114,7 @@ def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
     'args_num': 1,
     'args_name': ['String'],
     'description': 'Will make join the voice channel you are in'
-
+})
 #End Join Channel command
 
 

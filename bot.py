@@ -36,7 +36,7 @@ async def on_connect(*args, **kwargs):
 
 @client.event
 async def echo(ctx, *, message=None):
-    Message = message or "Need Message"
+    message = message or "Need Message"
     await ctx.message.delete()
     await ctx.send(message)
 

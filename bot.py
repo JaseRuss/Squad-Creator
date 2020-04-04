@@ -6,7 +6,7 @@
 # bot.py
 import discord 
 from discord.ext import commands
-bot = command.bot(command_prefix='-', caseinsensitive=True)
+bot = commands.bot(command_prefix='-', caseinsensitive=True)
 client = discord.Client()
 
 

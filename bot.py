@@ -37,7 +37,7 @@ class CommandHandler:
 
 # create discord client
 client = discord.Client()
-token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xohm0Q.W7Hvla1J0gxJtBGrsphBeu4mPco'
+token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4'
 
 # create the CommandHandler object and pass it the client
 ch = CommandHandler(client)
@@ -70,7 +70,7 @@ def Squad_function(message, client, args):
     except Exception as e:
         return e
 ch.add_command({
-    'trigger': '!Squad',
+    'trigger': '!squad',
     'function': Squad_function,
     'args_num': 1,
     'args_name': ['Integer'],

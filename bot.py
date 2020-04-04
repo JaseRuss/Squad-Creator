@@ -34,8 +34,8 @@ async def on_ready(*args, **kwargs):
 @bot.event
 async def on_ready(*args, **kwargs):
     print("We have logged in as {0.user}".format(ctx))
-    print("Channels", list(ctx.get_all_channels()))
-    print("Members", list(ctx.get_all_members()))
+    print("Channels", list(bot.get_all_channels()))
+    print("Members", list(bot.get_all_members()))
 """
 
 @client.event

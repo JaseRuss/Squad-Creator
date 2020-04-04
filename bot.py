@@ -17,6 +17,18 @@ cwd = str(cwd)
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
 bot.config_token = secret_file['token']
+
+
+@bot.command()
+async def echo(ctx, *, message=None):
+    """
+    A simple command that repeats the users input back to them.
+    """
+    message = message or "Please provide the message to be repeated."
+    await ctx.message.delete()
+    await ctx.send(message)
+
+"""
 client = discord.Client()
 
 
@@ -34,14 +46,7 @@ async def on_connect(*args, **kwargs):
     print("Channels", list(client.get_all_channels()))
     print("Members", list(client.get_all_members()))
 
-@bot.command()
-async def echo(ctx, *, message=None):
-    """
-    A simple command that repeats the users input back to them.
-    """
-    message = message or "Please provide the message to be repeated."
-    await ctx.message.delete()
-    await ctx.send(message)
+
 
 @client.event
 async def on_message(message):
@@ -60,5 +65,6 @@ async def on_message(message):
         await message.channel.send("Calculating Squads")
 
 
-#client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")
+client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")
+"""
 bot.run(bot.config_token)

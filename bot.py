@@ -37,7 +37,7 @@ class CommandHandler:
 
 # create discord client
 client = discord.Client()
-token = 'NDI3MjIyOTExMjg0NDEyNDQ2.DZhfMA.h3sx9iq6vO_ROYtlxHHTSZJz0xs'
+token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xohm0Q.W7Hvla1J0gxJtBGrsphBeu4mPco'
 
 # create the CommandHandler object and pass it the client
 ch = CommandHandler(client)

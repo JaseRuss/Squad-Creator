@@ -16,17 +16,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(message)
-    print(message.author)
-    print(client.user)
-    print(message.content)
     if message.author == client.user:
         return
 
     if message.content.startswith("$hello"):
         await message.channel.send("Hello!")
 
+    if message.content.startswith("$ch"):
+        await message.channel.send(self.channel)
+
     if message.content.startswith("!squad"):
+        client.VoiceChannel
         await message.channel.send("Calculating Squads")
 
 client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")

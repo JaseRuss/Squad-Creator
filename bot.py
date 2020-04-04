@@ -23,7 +23,7 @@ async def on_message(message,self):
         await message.channel.send("Hello!")
 
     if message.content.startswith("!ch"):
-        await message.channel.send(self.channel)
+        await message.channel.send(bot.servers)
 
     if message.content.startswith("!squad"):
         client.VoiceChannel

@@ -42,7 +42,6 @@ token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xohm0Q.W7Hvla1J0gxJtBGrsphBeu4mPco'
 # create the CommandHandler object and pass it the client
 ch = CommandHandler(client)
 
-
 # command's functions
 ## start commands command
 def commands_command(message, client, args):
@@ -88,7 +87,7 @@ def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
         channel: discord.VoiceChannel [Optional]
             The channel to connect to. If a channel is not specified, an attempt to join the voice channel you are in
             will be made.
-        """
+        
         try:
             await ctx.message.delete()
         except discord.HTTPException:
@@ -107,8 +106,8 @@ def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
                 return
 
         await player.connect(channel.id) 
-
-		ch.add_command({
+"""
+ch.add_command({
     'trigger': '!Join',
     'function': connect_,
     'args_num': 1,
@@ -116,7 +115,6 @@ def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
     'description': 'Will make join the voice channel you are in'
 })
 #End Join Channel command
-
 
 # bot is ready
 @client.event

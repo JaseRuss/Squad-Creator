@@ -31,16 +31,12 @@ async def echo(ctx, *, message=None):
 @bot.command()
 async def on_ready(*args, **kwargs):
     print("Channels", list(bot.get_all_channels()))
+@bot.event
+async def on_ready(ctx, **kwargs):
+    print("We have logged in as {0.user}".format(ctx))
+    print("Channels", list(ctx.get_all_channels()))
+    print("Members", list(ctx.get_all_members()))
 """
-client = discord.Client()
-
-
-@client.event
-async def on_ready(*args, **kwargs):
-    print("We have logged in as {0.user}".format(client))
-    print("Channels", list(client.get_all_channels()))
-    print("Members", list(client.get_all_members()))
-
 
 @client.event
 async def on_connect(*args, **kwargs):

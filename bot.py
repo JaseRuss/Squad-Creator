@@ -1,7 +1,11 @@
 # bot.py 
 # used https://medium.com/bad-programming/making-a-cool-discord-bot-in-python-3-e6773add3c48 as a guide
-import discord
+# deploy info https://medium.com/davao-js/v2-tutorial-deploy-your-discord-bot-to-heroku-part-2-9a37572d5de4
 
+# bot.py
+import discord
+import requests
+import json
 
 # command handler class
 
@@ -22,11 +26,11 @@ class CommandHandler:
                 if args[0] == command['trigger']:
                     args.pop(0)
                     if command['args_num'] == 0:
-                        return self.client.send_message(message.channel,str(command['function'](message, self.client, args)))
+                        return self.client.send_message(message.channel, str(command['function'](message, self.client, args)))
                         break
                     else:
                         if len(args) >= command['args_num']:
-                            return self.client.send_message(message.channel,str(command['function'](message, self.client, args)))
+                            return self.client.send_message(message.channel, str(command['function'](message, self.client, args)))
                             break
                         else:
                             return self.client.send_message(message.channel, 'command "{}" requires {} argument(s) "{}"'.format(command['trigger'], command['args_num'], ', '.join(command['args_name'])))
@@ -42,7 +46,6 @@ token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4'
 # create the CommandHandler object and pass it the client
 ch = CommandHandler(client)
 
-# command's functions
 ## start commands command
 def commands_command(message, client, args):
     try:
@@ -63,58 +66,30 @@ ch.add_command({
 })
 ## end commands command
 
-## start Squad command
-def Squad_function(message, client, args):
+## start ip commad
+def ip_command(message, client, args):
     try:
-        return 'Hello {}, Argument One: {}'.format(message.author, args[0])
+        req = requests.get('http://ip-api.com/json/{}'.format(args[0]))
+        resp = json.loads(req.content.decode())
+        if req.status_code == 200:
+            if resp['status'] == 'success':
+                template = '**{}**\n**IP: **{}\n**City: **{}\n**State: **{}\n**Country: **{}\n**Latitude: **{}\n**Longitude: **{}\n**ISP: **{}'
+                out = template.format(args[0], resp['query'], resp['city'], resp['regionName'], resp['country'], resp['lat'], resp['lon'], resp['isp'])
+                return out
+            elif resp['status'] == 'fail':
+                return 'API Request Failed'
+        else:
+            return 'HTTP Request Failed: Error {}'.format(req.status_code)
     except Exception as e:
-        return e
+        print(e)
 ch.add_command({
-    'trigger': '!squad',
-    'function': Squad_function,
+    'trigger': '!ip',
+    'function': ip_command,
     'args_num': 1,
-    'args_name': ['Integer'],
-    'description': 'Will output a Squad Size based on Argument from a defined Voice Chat Channel'
+    'args_name': ['IP\Domain'],
+    'description': 'Prints information about provided IP/Domain!'
 })
-## end Squad command
-
-#Start JoinChannel command#
-def connect_(self, ctx, *, channel: discord.VoiceChannel = None):
-        """Connect to voice.
-
-        Parameters
-        ------------
-        channel: discord.VoiceChannel [Optional]
-            The channel to connect to. If a channel is not specified, an attempt to join the voice channel you are in
-            will be made.
-        
-        try:
-            await ctx.message.delete()
-        except discord.HTTPException:
-            pass
-
-        if not channel:
-            try:
-                channel = ctx.author.voice.channel
-            except AttributeError:
-                raise NoChannel('No channel to join. Please either specify a valid channel or join one.')
-
-        player = self.bot.wavelink.get_player(ctx.guild.id, cls=Player)
-
-        if player.is_connected:
-            if ctx.author.voice.channel == ctx.guild.me.voice.channel:
-                return
-
-        await player.connect(channel.id) 
-"""
-ch.add_command({
-    'trigger': '!Join',
-    'function': connect_,
-    'args_num': 1,
-    'args_name': ['String'],
-    'description': 'Will make join the voice channel you are in'
-})
-#End Join Channel command
+## end ip command
 
 # bot is ready
 @client.event
@@ -122,32 +97,25 @@ async def on_ready():
     try:
         print(client.user.name)
         print(client.user.id)
-
     except Exception as e:
         print(e)
-
 
 # on new message
 @client.event
 async def on_message(message):
-    
     # if the message is from the bot itself ignore it
     if message.author == client.user:
         pass
     else:
-        
         # try to evaluate with the command handler
         try:
             await ch.command_handler(message)
-            
         # message doesn't contain a command trigger
         except TypeError as e:
             pass
-        
         # generic python error
         except Exception as e:
             print(e)
-
 
 # start bot
 client.run(token)

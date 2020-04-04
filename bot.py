@@ -28,7 +28,7 @@ async def echo(ctx, *, message=None):
     await ctx.message.delete()
     await ctx.send(message)
 
-@bot.command()
+@bot.event()
 async def on_ready(*args, **kwargs):
     print("Channels", list(bot.get_all_channels()))
 

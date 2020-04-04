@@ -23,7 +23,7 @@ client = discord.Client()
 @client.event
 async def on_ready(*args, **kwargs):
     print("We have logged in as {0.user}".format(client))
-        print("Channels", list(client.get_all_channels()))
+    print("Channels", list(client.get_all_channels()))
     print("Members", list(client.get_all_members()))
 
 
@@ -31,7 +31,6 @@ async def on_ready(*args, **kwargs):
 async def on_connect(*args, **kwargs):
     print("Guilds", client.guilds)
     print("Voice Clients", client.voice_clients)
-
     print("Channels", list(client.get_all_channels()))
     print("Members", list(client.get_all_members()))
 

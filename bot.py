@@ -23,8 +23,7 @@ async def on_message(message,self):
         await message.channel.send("Hello!")
 
     if message.content.startswith("!ch"):
-        Users: {sum(1 for _ in bot.get_all_members())}
-        await message.channel.send(Users)
+        await message.channel.send('Username: {0.name}\nID: {0.id}'.format(self.user))
 
     if message.content.startswith("!squad"):
         client.VoiceChannel

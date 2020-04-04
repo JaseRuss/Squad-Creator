@@ -10,13 +10,10 @@ import logging # For logging
 from pathlib import Path # For paths
 import json
 
-cwd = Path(__file__).parents[0]
-cwd = str(cwd)
-print(f"{cwd}\n-----")
-
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
+bot.config_token = secret_file['token']
 client = discord.Client()
 
 
@@ -34,7 +31,7 @@ async def on_connect(*args, **kwargs):
     print("Channels", list(client.get_all_channels()))
     print("Members", list(client.get_all_members()))
 
-@client.event
+@bot.command
 async def echo(ctx, *, message=None):
     message = message or "Need Message"
     await ctx.message.delete()
@@ -59,3 +56,4 @@ async def on_message(message):
 
 
 client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")
+bot.run(bot.config_token)

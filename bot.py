@@ -15,7 +15,7 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message):
+async def on_message(message,self):
     if message.author == client.user:
         return
 
@@ -23,7 +23,7 @@ async def on_message(message):
         await message.channel.send("Hello!")
 
     if message.content.startswith("!ch"):
-        await message.channel.send(discord.client.channel)
+        await message.channel.send(self.channel)
 
     if message.content.startswith("!squad"):
         client.VoiceChannel

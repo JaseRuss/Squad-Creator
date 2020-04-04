@@ -26,5 +26,7 @@ async def on_message(message):
     if message.content.startswith("$hello"):
         await message.channel.send("Hello!")
 
+    if message.content.startswith("!squad"):
+        await message.channel.send("Calculating Squads")
 
 client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")

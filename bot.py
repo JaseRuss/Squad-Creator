@@ -30,7 +30,7 @@ async def echo(ctx, *, message=None):
 
 @bot.command()
 async def on_ready(*args, **kwargs):
-    print("Channels", list(client.get_all_channels()))
+    print("Channels", list(bot.get_all_channels()))
 """
 client = discord.Client()
 

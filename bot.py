@@ -28,6 +28,9 @@ async def echo(ctx, *, message=None):
     await ctx.message.delete()
     await ctx.send(message)
 
+@bot.command()
+async def on_ready(*args, **kwargs):
+    print("Channels", list(client.get_all_channels()))
 """
 client = discord.Client()
 

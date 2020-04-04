@@ -26,6 +26,15 @@ async def on_ready():
 
 
 @client.event
+async def on_connect(*args, **kwargs):
+    print("Guilds", client.guilds)
+    print("Voice Clients", client.voice_clients)
+
+    print("Channels", list(client.get_all_channels()))
+    print("Members", list(client.get_all_members()))
+
+
+@client.event
 async def on_message(message):
     if message.author == client.user:
         return
@@ -34,10 +43,13 @@ async def on_message(message):
         await message.channel.send("Hello!")
 
     if message.content.startswith("!ch"):
-        await message.channel.send('Username: {0.name}\nID: {0.id}'.format(self.user))
+        await message.channel.send(
+            f"Username: {message.author.name}\nID: {message.author.id}"
+        )
 
     if message.content.startswith("!squad"):
         client.VoiceChannel
         await message.channel.send("Calculating Squads")
+
 
 client.run("Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4")

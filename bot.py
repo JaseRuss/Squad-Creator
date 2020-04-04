@@ -15,7 +15,7 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message,self,ctx):
+async def on_message(message,self):
     if message.author == client.user:
         return
 
@@ -23,7 +23,7 @@ async def on_message(message,self,ctx):
         await message.channel.send("Hello!")
 
     if message.content.startswith("!ch"):
-        Users: {sum(1 for _ in self.bot.get_all_members())}
+        Users: {sum(1 for _ in bot.get_all_members())}
         await message.channel.send(Users)
 
     if message.content.startswith("!squad"):

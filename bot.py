@@ -49,7 +49,6 @@ async def on_message(message):
         )
 
     if message.content.startswith("!squad"):
-        client.VoiceChannel
         await message.channel.send("Calculating Squads")
 
 

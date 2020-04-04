@@ -4,8 +4,9 @@
 # token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4'
 
 # bot.py
-import discord
-
+import discord 
+from discord.ext import commands
+bot = command.bot(command_prefix='-', caseinsensitive=True)
 client = discord.Client()
 
 

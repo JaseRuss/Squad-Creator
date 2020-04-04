@@ -31,8 +31,9 @@ async def echo(ctx, *, message=None):
 @bot.command()
 async def on_ready(*args, **kwargs):
     print("Channels", list(bot.get_all_channels()))
+
 @bot.event
-async def on_ready(*args, **kwargs):
+async def on_ready():
     print("We have logged in as {0.user}".format(ctx))
     print("Channels", list(bot.get_all_channels()))
     print("Members", list(bot.get_all_members()))

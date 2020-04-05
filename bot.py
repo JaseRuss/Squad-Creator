@@ -30,11 +30,9 @@ async def echo(ctx, *, message=None):
 
 @bot.command()
 async def VList(ctx, *, message=None):
-    count = 0
-    voice_channel_list = channel_names()
-    for i in voice_channel_list:
-        message+=i(count)
-        count+=1
+    VCL = channel_names()
+    for x in VCL:
+        message+=x
     await ctx.message.delete()
     await ctx.send(message) #Sends message to Discord
 

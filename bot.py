@@ -1,7 +1,7 @@
 # bot.py
 # used https://medium.com/bad-programming/making-a-cool-discord-bot-in-python-3-e6773add3c48 as a guide
 # deploy info https://medium.com/davao-js/v2-tutorial-deploy-your-discord-bot-to-heroku-part-2-9a37572d5de4
-# token = 'Njk1OTIzOTg5MjgwODQ5OTQw.Xoh7ug.oDTXpc2pAJIZuAz-JSpqaqE5aE4'
+
 
 # bot.py
 import discord # For discord
@@ -18,8 +18,8 @@ cwd = str(cwd)
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
-bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
-#bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on heroku
+#bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
+bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on heroku
 
 @bot.command()
 async def echo(ctx, *, message=None):

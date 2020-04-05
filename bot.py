@@ -31,7 +31,8 @@ async def echo(ctx, *, message=None):
 @bot.command()
 async def VList(ctx, *, message=None):
     count = 0
-    for i in channel_names():
+    voice_channel_list = channel_names()
+    for i in voice_channel_list:
         message+=i(count)
         count+=1
     await ctx.message.delete()

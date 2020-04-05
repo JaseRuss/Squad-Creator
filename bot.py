@@ -32,10 +32,7 @@ async def echo(ctx, *, message=None):
 async def on_ready():
     print("We have logged in as {0.user}".format(bot)) 
     #print("Channels", list(bot.get_all_channels()))
-    voice_channel_list = []
-    for guild in bot.guilds:
-        for channel in guild.voice_channels:
-         voice_channel_list.append(channel)
+    voice_channel_list = channel_names()
     print (len(voice_channel_list)) 
     #print (voice_channel_list)     
 

@@ -29,9 +29,9 @@ async def echo(ctx, *, message=None):
     await ctx.send(message) #Sends message to Discord
 
 @bot.event
-async def on_ready(ctx):
+async def on_ready():
     print("We have logged in as {0.user}".format(bot)) 
-    print("Channels", list(bot.get_all_channels()))
+    #print("Channels", list(bot.get_all_channels()))
     voice_channel_list = []
     for guild in bot.guilds:
         for channel in guild.voice_channels:

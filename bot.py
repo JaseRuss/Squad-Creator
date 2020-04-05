@@ -75,8 +75,7 @@ async def bg(ctx, *, message=None , squadsize=3 ):
             message = "You got no fans, cried the toothless yokel - Voice channel emtpy"
     else:
         message = "Need a voice channel ID please e.g -bg 0 \n To see all the Voice channels and their ID's use -vl"
-    print (message)
-    #await ctx.send(message) #Sends message to Discord
+    await ctx.send(message) #Sends message to Discord
 
 
 @bot.event

@@ -36,7 +36,7 @@ async def on_ready():
     for guild in bot.guilds:
         for channel in guild.text_channels:
          text_channel_list.append(channel)
-    await ctx.send(text_channel_list)      
+    await bot.send(text_channel_list)      
 
 """
 

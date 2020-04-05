@@ -25,13 +25,15 @@ async def echo(ctx, *, message=None):
     A simple command that repeats the users input back to them.
     """
     message = message or "Please provide the message to be repeated." # this cactched empty argument message. either message is true or "text"
-    await ctx.message.delete()
+    await ctx.message.delete() # Deletes the message to the bot - Presumibly to keep it tidy Might delete this
     await ctx.send(message) #Sends message to Discord
 
 @bot.command()
 async def VList(ctx, *, message=None):
-
-    message = channel_names()
+    i = 0
+    for i in len(channel_names())
+        message = message + channel_names(i)
+        i++
     await ctx.message.delete()
     await ctx.send(message) #Sends message to Discord
 
@@ -39,8 +41,8 @@ async def VList(ctx, *, message=None):
 async def on_ready():
     print("We have logged in as {0.user}".format(bot)) 
     #print("Channels", list(bot.get_all_channels()))
-    voice_channel_list = channel_names()
-    print (len(voice_channel_list)) 
+    #voice_channel_list = channel_names()
+    #print (len(voice_channel_list)) 
     #print (voice_channel_list)     
 
 

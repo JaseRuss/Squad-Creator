@@ -36,8 +36,15 @@ async def on_ready():
     for guild in bot.guilds:
         for channel in guild.voice_channels:
          voice_channel_list.append(channel)
-    print (voice_channel_list.count()) 
+    print (len(voice_channel_list)) 
     #print (voice_channel_list)     
+
+def channel_names ():
+    voice_channel_list = []
+    for guild in bot.guilds:
+        for channel in guild.voice_channels:
+         voice_channel_list.append(channel)
+    return (voice_channel_list) 
 
 """
 

@@ -36,7 +36,7 @@ async def on_ready():
     for guild in bot.guilds:
         for channel in guild.text_channels:
          text_channel_list.append(channel)
-    await bot.command.send(text_channel_list)      ### I think the bot command has a send
+    await bot.command(send(text_channel_list))      ### I think the bot command has a send
 
 """
 

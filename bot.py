@@ -18,8 +18,8 @@ cwd = str(cwd)
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
-bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
-#bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server
+#bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
+bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server
 
 #Simple Echo Command - Just parrots back whatever you pass to it
 @bot.command()
@@ -70,7 +70,7 @@ async def bg(ctx, *, message=None , squadsize=3 ):
                 else:
                     squadno +=1
                     count = 0
-            message = message + "Assignments Complete, Good hunting - make big AT proud"
+            message = message + "Assignments Complete, Good hunting - make AT proud"
         else:
             message = "You got no fans, cried the toothless yokel - Voice channel emtpy"
     else:

@@ -31,6 +31,7 @@ async def echo(ctx, *, message=None):
 @bot.command()
 async def VList(ctx, *, message=None):
     VCL = channel_names()
+    message = ""
     for x in VCL:
         message= message + x 
     await ctx.message.delete()

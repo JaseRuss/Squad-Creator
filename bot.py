@@ -30,12 +30,15 @@ async def echo(ctx, *, message=None):
 
 @bot.command()
 async def VList(ctx, *, message=None):
+    await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
+    count = 0
     VCL = channel_names()
     message = ""
+
     for x in VCL:
-        #message= message +  converttostr(x) + " "
-        message.join(x)
-    await ctx.message.delete()
+        message =  "\n" + message + "Channel ID : " + str(count) +"\n" +" Channel Name :"+ x.name +"\n" 
+        count+=1
+        
     await ctx.send(message) #Sends message to Discord
 
 @bot.event

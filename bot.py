@@ -10,6 +10,7 @@ import logging # For logging
 from pathlib import Path # For paths
 import json
 import os
+import random
 
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
@@ -17,8 +18,8 @@ cwd = str(cwd)
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
-#bot.config_token = secret_file['token']
-bot.config_token = os.environ['DISCORD_TOKEN']
+bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
+#bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on heroku
 
 @bot.command()
 async def echo(ctx, *, message=None):
@@ -30,7 +31,7 @@ async def echo(ctx, *, message=None):
     await ctx.send(message) #Sends message to Discord
 
 @bot.command()
-async def VL(ctx, *, message=None):
+async def VL(ctx, *, message=None): # Voice List
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     count = 0
     VCL = channel_names()
@@ -40,33 +41,99 @@ async def VL(ctx, *, message=None):
         message =  "\n" + message + "Channel ID : " + str(count) +"\n" +" Channel Name :"+ x.name +"\n" 
         count+=1
     await ctx.send(message) #Sends message to Discord
-    print (VCL[count-1])
+
 
 @bot.command()
 #vcid = Voice channel ID
 async def mk(ctx, *, message=None):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
-
-    VCL = channel_names()
-    print(VCL[int(message)].members) # retuns membership objects for the channel specified in the message argument
-
-    Users = ["test1","test2","test3","test4","test5","test6","test7","test8","test9","test10","test11","test12","test13","test14","test15","test16","test17" ]
-
-
+    if isinstance(message,int):
+        VCL = channel_names()
+        print(VCL[int(message)].members) # retuns membership objects for the channel specified in the message argument
+    
     await ctx.send(message) #Sends message to Discord
 
-
+@bot.command()
+#vcid = Voice channel ID
+async def bg(ctx, *, message=None , squadsize=int ):
+    await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
+    Users = []
+    if message:
+        message = "\n"
+        squadno = 1 # Defines the initial Squad number
+        squadsize = 3 # Defines the number of players in a squad
+        count = 0 # counter for loop
+        VCL = channel_names() 
+        Users = (VCL[int(message)].members)
+        if (len(Users) > 0):
+            random.shuffle(Users)  # shuffles the user list around to create random teams
+            while (len(Users) > 0):
+                message = message + "\n Squad "+str(squadno) + "\n"
+                
+                while (count < squadsize):
+                    try:
+                        message = message + str(Users.pop())
+                    except:
+                        message = message + '\n'
+                    count +=1
+                else:
+                    squadno +=1
+                    count = 0
+            message = message + "Assignments Complete Good hunting, make big AT proud"
+        else:
+            message = "You got no fans, cried the toothless yokel - Voice channel emtpy"
+    else:
+        message = "Need a voice channel ID please e.g -bg 0 \n To see all the Voice channels and their ID's use -vl"
+    await ctx.send(message) #Sends message to Discord
 
 @bot.event
 async def on_ready():
     print("We have logged in as {0.user}".format(bot)) 
+    #Users = ["test1","test2","test3","test4","test5","test6","test7","test8","test9","test10","test11","test12","test13","test14","test15","test16","test17" ] #Test data
+
+    '''  
+    squadno = 1 # Defines the initial Squad number
+    squadsize = 3 # Defines the number of players in a squad
+    count = 0 # counter for loop
+    VCL = channel_names() 
+    Users = (VCL[0].members)
+    random.shuffle(Users)  # shuffles the user list around to create random teams
+    while (len(Users) > 0):
+        print ("\nSquad "+str(squadno)) 
+        
+        while (count < squadsize):
+            try:
+                print(Users.pop())
+            except:
+                print('\n')
+            count +=1
+        else:
+            squadno +=1
+            count = 0
+    print ("Assignments Complete Good hunting") 
+
+# END Working CODE :D
+
+        while (count != squadsize):
+            print("\n" , Users.pop())
+            userno = len(Users)
+            count+=1
+            print(userno)
+
+        else:
+            squadno+=1
+            print("Squad " + str(squadno))
+            '''
+    
+    
+    #VCL = channel_names()
+    #print(len(VCL[0].members))
+    #print(random.shuffle(VCL[0].members))
     #print("Channels", list(bot.get_all_channels()))
     #voice_channel_list = channel_names()
     #print (len(voice_channel_list)) 
-    #print (voice_channel_list)     
-
-
-
+    #print (voice_channel_list)  
+    
 #Creates a list of all voice channel names \o/
 def channel_names ():
     voice_channel_list = []

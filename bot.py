@@ -12,11 +12,13 @@ import json
 import os
 import random
 
-cwd = Path(__file__).parents[0]
-cwd = str(cwd)
+# Used for locally stored Key - meant to be used when ruunning locally
+# cwd = Path(__file__).parents[0]
+# cwd = str(cwd)
+# secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 
 # Defining a few things
-secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
+
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
 #bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
 bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server

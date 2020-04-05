@@ -9,6 +9,7 @@ from discord.ext import commands # For discord
 import logging # For logging
 from pathlib import Path # For paths
 import json
+import os
 
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
@@ -17,7 +18,7 @@ cwd = str(cwd)
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
 bot.config_token = secret_file['token']
-
+bot.config_token = os.environ['DISCORD_TOKEN']
 
 @bot.command()
 async def echo(ctx, *, message=None):

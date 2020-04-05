@@ -38,7 +38,7 @@ async def on_ready():
          voice_channel_list.append(channel)
     print (voice_channel_list[0]) 
     print (voice_channel_list[2]) 
-    print (voice_channel_list.type()) 
+    print (type(voice_channel_list)) 
     #print (voice_channel_list)     
 
 """

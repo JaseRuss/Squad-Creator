@@ -29,7 +29,7 @@ async def echo(ctx, *, message=None):
     await ctx.send(message) #Sends message to Discord
 
 @bot.command()
-async def VList(ctx, *, message=None):
+async def VL(ctx, *, message=None):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     count = 0
     VCL = channel_names()
@@ -38,8 +38,23 @@ async def VList(ctx, *, message=None):
     for x in VCL:
         message =  "\n" + message + "Channel ID : " + str(count) +"\n" +" Channel Name :"+ x.name +"\n" 
         count+=1
-        
     await ctx.send(message) #Sends message to Discord
+    print (VCL[count-1])
+
+@bot.command()
+#vcid = Voice channel ID
+async def mk(ctx, *, message=None):
+    await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
+
+    VCL = channel_names()
+    print(VCL[int(message)].members) # retuns membership objects for the channel specified in the message argument
+
+    Users = ["test1","test2","test3","test4","test5","test6","test7","test8","test9","test10","test11","test12","test13","test14","test15","test16","test17" ]
+
+
+    await ctx.send(message) #Sends message to Discord
+
+
 
 @bot.event
 async def on_ready():

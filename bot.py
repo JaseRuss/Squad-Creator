@@ -19,7 +19,7 @@ cwd = str(cwd)
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
 #bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
-bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on heroku
+bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server
 
 @bot.command()
 async def echo(ctx, *, message=None):
@@ -58,8 +58,8 @@ async def mk(ctx, *, message=None):
 async def bg(ctx, *, message=None , squadsize=int ):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     Users = []
-    if message:
-        message = "\n"
+    if (message):
+        message = ""
         squadno = 1 # Defines the initial Squad number
         squadsize = 3 # Defines the number of players in a squad
         count = 0 # counter for loop

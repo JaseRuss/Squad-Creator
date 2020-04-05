@@ -18,8 +18,8 @@ cwd = str(cwd)
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
-#bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
-bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server
+bot.config_token = secret_file['token'] # Using local token stored in botconfig\secrets.json
+#bot.config_token = os.environ['DISCORD_TOKEN'] # Using the token code stored on server
 
 #Simple Echo Command - Just parrots back whatever you pass to it
 @bot.command()
@@ -46,12 +46,12 @@ async def VL(ctx, *, message=None): # Voice List
 
 @bot.command()
 #BG - command lets you create a list of squads from a Voice Channel (argument )
-async def bg(ctx, *, message=None , squadsize=int ):
+async def bg(ctx, *, message=None , squadsize=3 ):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     Users = []
     if message:
         squadno = 1 # Defines the initial Squad number
-        squadsize = 3 # Defines the number of players in a squad
+        #squadsize = 3 # Defines the number of players in a squad
         count = 0 # counter for loop
         VCL = channel_names() 
         Users = (VCL[int(message)].members)
@@ -62,7 +62,8 @@ async def bg(ctx, *, message=None , squadsize=int ):
                 
                 while (count < squadsize):
                     try:
-                        message = message + str(Users.pop()) +"\n"
+                        message = message + str(Users[-1].nick) +"\n"
+                        Users.pop()
                     except:
                         message = message + '\n'
                     count +=1
@@ -74,11 +75,16 @@ async def bg(ctx, *, message=None , squadsize=int ):
             message = "You got no fans, cried the toothless yokel - Voice channel emtpy"
     else:
         message = "Need a voice channel ID please e.g -bg 0 \n To see all the Voice channels and their ID's use -vl"
-    await ctx.send(message) #Sends message to Discord
+    print (message)
+    #await ctx.send(message) #Sends message to Discord
+
 
 @bot.event
 async def on_ready():
     print("We have logged in as {0.user}".format(bot)) 
+    #VCL = channel_names()
+    #Users = (VCL[0].members)
+    #print(Users[0].nick)
 
 #Creates a list of all voice channel names \o/
 def channel_names ():

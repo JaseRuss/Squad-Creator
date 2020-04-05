@@ -17,7 +17,7 @@ cwd = str(cwd)
 # Defining a few things
 secret_file = json.load(open(cwd+'/bot_config/secrets.json'))
 bot = commands.Bot(command_prefix='-', case_insensitive=True)
-bot.config_token = secret_file['token']
+#bot.config_token = secret_file['token']
 bot.config_token = os.environ['DISCORD_TOKEN']
 
 @bot.command()

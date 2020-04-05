@@ -60,7 +60,7 @@ async def bg(ctx, *, message=None , squadsize=int ):
     Users = []
     if message:
         squadno = 1 # Defines the initial Squad number
-        squadsize =  # Defines the number of players in a squad
+        squadsize = 1 # Defines the number of players in a squad
         count = 0 # counter for loop
         VCL = channel_names() 
         Users = (VCL[int(message)].members)
@@ -71,7 +71,7 @@ async def bg(ctx, *, message=None , squadsize=int ):
                 
                 while (count < squadsize):
                     try:
-                        message = message + str(Users.pop())
+                        message = message + str(Users.pop()) +"\n"
                     except:
                         message = message + '\n'
                     count +=1

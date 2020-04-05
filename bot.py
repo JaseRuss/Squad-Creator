@@ -60,7 +60,7 @@ async def bg(ctx, *, message=None , squadsize=int ):
     Users = []
     if message:
         squadno = 1 # Defines the initial Squad number
-        squadsize = 3 # Defines the number of players in a squad
+        squadsize =  # Defines the number of players in a squad
         count = 0 # counter for loop
         VCL = channel_names() 
         Users = (VCL[int(message)].members)
@@ -78,7 +78,7 @@ async def bg(ctx, *, message=None , squadsize=int ):
                 else:
                     squadno +=1
                     count = 0
-            message = message + "Assignments Complete Good hunting, make big AT proud"
+            message = message + "Assignments Complete, Good hunting - make big AT proud"
         else:
             message = "You got no fans, cried the toothless yokel - Voice channel emtpy"
     else:

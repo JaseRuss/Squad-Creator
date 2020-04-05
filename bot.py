@@ -32,7 +32,7 @@ async def echo(ctx, *, message=None):
 async def VList(ctx, *, message=None):
     count = 0
     for i in channel_names():
-        message+=channel_names(count)
+        message+=i(count)
         count+=1
     await ctx.message.delete()
     await ctx.send(message) #Sends message to Discord

@@ -37,6 +37,8 @@ async def on_ready():
         for channel in guild.voice_channels:
          voice_channel_list.append(channel)
     print (voice_channel_list[0]) 
+    print (voice_channel_list[5]) 
+    print (voice_channel_list.type()) 
     #print (voice_channel_list)     
 
 """

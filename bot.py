@@ -58,8 +58,7 @@ async def mk(ctx, *, message=None):
 async def bg(ctx, *, message=None , squadsize=int ):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     Users = []
-    if (message):
-        message = ""
+    if message:
         squadno = 1 # Defines the initial Squad number
         squadsize = 3 # Defines the number of players in a squad
         count = 0 # counter for loop

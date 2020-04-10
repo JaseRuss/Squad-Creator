@@ -48,7 +48,7 @@ async def VL(ctx, *, message=None): # Voice List
 
 @bot.command()
 #BG - command lets you create a list of squads from a Voice Channel (argument )
-async def bg(ctx, *, message=None , squadsize=3 ):
+async def bg(ctx, *, message=None , squadsize=4 ):
     await ctx.message.delete() # deletes message from user first to keep it a bit tidyer
     Users = []
     if message:
